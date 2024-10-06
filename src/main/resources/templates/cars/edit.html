@@ -1,0 +1,41 @@
+<!-- src/main/resources/templates/cars/edit.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Editar Coche</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container mt-4">
+    <h1 class="mb-4">Editar Coche</h1>
+    <form th:action="@{/cars/{id}(id=${car.id})}" th:object="${car}" method="post">
+        <div class="mb-3">
+            <label for="brand" class="form-label">Marca</label>
+            <input type="text" id="brand" class="form-control" th:field="*{brand}" required>
+        </div>
+        <div class="mb-3">
+            <label for="model" class="form-label">Modelo</label>
+            <input type="text" id="model" class="form-control" th:field="*{model}" required>
+        </div>
+        <div class="mb-3">
+            <label for="licensePlate" class="form-label">Matrícula</label>
+            <input type="text" id="licensePlate" class="form-control" th:field="*{licensePlate}" required>
+        </div>
+        <div class="mb-3">
+            <label for="owner" class="form-label">Propietario</label>
+            <select id="owner" class="form-select" th:field="*{owner.id}">
+                <option value="" selected>Selecciona un propietario</option>
+                <option th:each="owner : ${owners}"
+                        th:value="${owner.id}"
+                        th:text="${owner.name}"
+                        th:selected="${car.owner != null} ? ${owner.id} == ${car.owner.id} : false">
+                </option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success">Actualizar</button>
+        <a th:href="@{/cars}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

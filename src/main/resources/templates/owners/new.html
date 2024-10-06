@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Nuevo Propietario</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Nuevo Propietario</h1>
+    <form th:action="@{/owners}" th:object="${owner}" method="post">
+        <div class="mb-3">
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" id="name" class="form-control" th:field="*{name}" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" class="form-control" th:field="*{email}" required>
+        </div>
+        <button type="submit" class="btn btn-success">Guardar</button>
+        <a th:href="@{/owners}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

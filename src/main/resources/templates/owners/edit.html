@@ -1,0 +1,26 @@
+<!-- src/main/resources/templates/owners/edit.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Editar Propietario</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container mt-4">
+    <h1 class="mb-4">Editar Propietario</h1>
+    <form th:action="@{/owners/{id}(id=${owner.id})}" th:object="${owner}" method="post">
+        <div class="mb-3">
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" id="name" class="form-control" th:field="*{name}" placeholder="Ej. Juan Pérez" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" class="form-control" th:field="*{email}" placeholder="ejemplo@correo.com" required>
+        </div>
+        <button type="submit" class="btn btn-success">Actualizar</button>
+        <a th:href="@{/owners}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

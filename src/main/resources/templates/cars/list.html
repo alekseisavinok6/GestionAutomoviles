@@ -1,0 +1,43 @@
+<!-- src/main/resources/templates/cars/list.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Coches</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container mt-4">
+    <h1 class="mb-4">Lista de Coches</h1>
+    <a th:href="@{/cars/new}" class="btn btn-primary mb-3">Nuevo Coche</a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Matrícula</th>
+            <th>Propietario</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="car : ${cars}">
+            <td th:text="${car.id}">1</td>
+            <td th:text="${car.brand}">Marca</td>
+            <td th:text="${car.model}">Modelo</td>
+            <td th:text="${car.licensePlate}">Matrícula</td>
+            <td th:text="${car.owner != null ? car.owner.name : 'Sin Propietario'}">Propietario</td>
+            <td>
+                <a th:href="@{/cars/{id}(id=${car.id})}" class="btn btn-warning btn-sm">Editar</a>
+                <a th:href="@{/cars/delete/{id}(id=${car.id})}"
+                   class="btn btn-danger btn-sm"
+                   onclick="return confirm('¿Estás seguro de eliminar este coche?');">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/}" class="btn btn-secondary">Volver al Inicio</a>
+</div>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
